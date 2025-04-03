@@ -1,0 +1,32 @@
+.login-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../pic/bg.jpg'); /* Đường dẫn đến ảnh */
+    background-size: cover; /* Căn chỉnh ảnh */
+    background-position: center; /* Căn giữa ảnh */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+
+}
+.login-form{
+    width: 250px;
+    height: fit-content;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    padding: 50px;
+    border-radius:10px ;
+    color: rgb(0, 136, 255);
+}
+input{
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+}
+body {
+    
+}
+h1{
+    background-color: aqua;
+    width: fit-content;
+}
