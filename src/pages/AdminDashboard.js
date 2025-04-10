@@ -7,6 +7,7 @@ import TietHocManager from "../components/admin/TietHocManager";
 import BuoihocManager from "../components/admin/BuoihocManager";
 import UserManager from "../components/admin/UserManager";
 import BomonManager from "../components/admin/BomonManager";
+import ToggleKhoaTrang from "../components/admin/Khoatrang";
 const AdminDashboard = () => {
   const [monhoc, setMonhoc] = useState([]);
 
@@ -52,6 +53,8 @@ const AdminDashboard = () => {
         <div><BuoihocManager /> </div>
         <div><BomonManager /> </div>
         <div><UserManager /> </div>
+        <div><ToggleKhoaTrang /> </div>
+
 
       </div>
     </div>

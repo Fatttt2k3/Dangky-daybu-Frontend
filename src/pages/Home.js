@@ -6,6 +6,8 @@ import vi from "date-fns/locale/vi";
 import "../style/Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ThoiKhoaBieuTuan from "../components/chucnangchung/xem-tkb";
+import {jwtDecode} from "jwt-decode"; // 🆕 Thêm dòng này
+
 registerLocale("vi", vi);
 
 const DangKyDayBu = () => {
@@ -23,6 +25,24 @@ const DangKyDayBu = () => {
   const [lopList, setLopList] = useState([]);
   const [tietHocList, setTietHocList] = useState([]);
   const [buoiHocList, setBuoiHocList] = useState([]);
+
+  // 🆕 Check khóa trang đăng ký
+  useEffect(() => {
+    const isLocked = localStorage.getItem("isPageLocked") === "true";
+    const token = localStorage.getItem("token");
+    if (isLocked && token) {
+      try {
+        const decoded = jwtDecode(token);
+        if (decoded.role !== "admin") {
+          alert("Trang đăng ký hiện đang bị khóa. Vui lòng liên hệ quản trị viên.");
+          window.location.href = "/";
+        }
+      } catch (err) {
+        alert("Token không hợp lệ. Đang chuyển hướng...");
+        window.location.href = "/";
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,9 +101,17 @@ const DangKyDayBu = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/"; // Hoặc URL trang đăng nhập của bạn
+  };
+
   return (
     <div className="container py-4">
       <h2 className="mb-4 text-center">Đăng Ký Dạy Bù</h2>
+      <button variant="secondary" onClick={handleLogout}>
+          Đăng xuất
+      </button>
       {message && <div className="alert alert-info">{message}</div>}
       <form onSubmit={handleSubmit} className="row g-3">
         <div className="col-md-6">
@@ -159,7 +187,7 @@ const DangKyDayBu = () => {
           <button type="submit" className="btn btn-primary px-4">Đăng Ký</button>
         </div>
       </form>
-      <div><ThoiKhoaBieuTuan/></div>
+      <div><ThoiKhoaBieuTuan /></div>
     </div>
   );
 };
