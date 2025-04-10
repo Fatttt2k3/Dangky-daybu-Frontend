@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Table, Form, Row, Col, Spinner, Alert } from "react-bootstrap";
 
-const API = "http://localhost:5000/api/system/lop";
-const API_THEM = "http://localhost:5000/api/system/them-lop";
-const API_XOA = "http://localhost:5000/api/system/xoa-lop";
-const API_SUA = "http://localhost:5000/api/system/sua-lop";
+const API = "http://localhost:5000/api/system/tiethoc";
+const API_THEM = "http://localhost:5000/api/system/them-tiethoc";
+const API_XOA = "http://localhost:5000/api/system/xoa-tiethoc";
+const API_SUA = "http://localhost:5000/api/system/sua-tiethoc";
 
-export default function LopManager() {
+export default function TietHocManager() {
   const [list, setList] = useState([]);
-  const [newName, setNewName] = useState("");
+  const [newNumber, setNewNumber] = useState("");
   const [editId, setEditId] = useState(null);
-  const [editName, setEditName] = useState("");
+  const [editNumber, setEditNumber] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,34 +20,30 @@ export default function LopManager() {
       const res = await axios.get(API);
       setList(res.data);
     } catch (err) {
-      setError("Không thể tải danh sách lớp!");
+      setError("Không thể tải danh sách tiết học!");
     } finally {
       setLoading(false);
     }
   };
 
   const handleAdd = async () => {
+    if (!newNumber) return alert("Vui lòng nhập số tiết!");
     try {
       const token = localStorage.getItem("token");
       await axios.post(
         API_THEM,
-        { name: newName },
+        { number: parseInt(newNumber) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      if (!newName.trim()) {
-  alert("Tên lớp không được để trống!");
-  return;
-}
-
-      setNewName("");
+      setNewNumber("");
       fetchData();
     } catch (err) {
-      alert("Thêm thất bại!");
+      alert(err.response?.data?.message || "Thêm thất bại!");
     }
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Bạn có chắc chắn muốn xóa?")) return;
+    if (!window.confirm("Bạn có chắc chắn muốn xóa tiết học này?")) return;
     try {
       const token = localStorage.getItem("token");
       await axios.delete(`${API_XOA}/${id}`, {
@@ -60,15 +56,16 @@ export default function LopManager() {
   };
 
   const handleEdit = async () => {
+    if (!editNumber) return alert("Vui lòng nhập số tiết mới!");
     try {
       const token = localStorage.getItem("token");
       await axios.put(
         `${API_SUA}/${editId}`,
-        { name: editName },
+        { number: parseInt(editNumber) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setEditId(null);
-      setEditName("");
+      setEditNumber("");
       fetchData();
     } catch (err) {
       alert("Sửa thất bại!");
@@ -84,25 +81,26 @@ export default function LopManager() {
 
   return (
     <div className="container mt-4">
-      <h4>Quản lý Lớp học</h4>
+      <h4>Quản lý Tiết học</h4>
 
       <Row className="mb-3">
         <Col md={6}>
           <Form.Control
-            placeholder="Tên lớp mới"
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
+            type="number"
+            placeholder="Số tiết mới"
+            value={newNumber}
+            onChange={(e) => setNewNumber(e.target.value)}
           />
         </Col>
         <Col>
-          <Button onClick={handleAdd}>Thêm lớp</Button>
+          <Button onClick={handleAdd}>Thêm tiết</Button>
         </Col>
       </Row>
 
       <Table bordered hover>
         <thead>
           <tr>
-            <th>Tên lớp</th>
+            <th>Số tiết</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -112,21 +110,18 @@ export default function LopManager() {
               <td>
                 {editId === item._id ? (
                   <Form.Control
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
+                    type="number"
+                    value={editNumber}
+                    onChange={(e) => setEditNumber(e.target.value)}
                   />
                 ) : (
-                  item.name
+                  item.number
                 )}
               </td>
               <td>
                 {editId === item._id ? (
                   <>
-                    <Button
-                      variant="success"
-                      size="sm"
-                      onClick={handleEdit}
-                    >
+                    <Button variant="success" size="sm" onClick={handleEdit}>
                       Lưu
                     </Button>{" "}
                     <Button
@@ -144,7 +139,7 @@ export default function LopManager() {
                       size="sm"
                       onClick={() => {
                         setEditId(item._id);
-                        setEditName(item.name);
+                        setEditNumber(item.number);
                       }}
                     >
                       Sửa
