@@ -10,7 +10,7 @@
 
 }
 .login-form{
-    width: 250px;
+    width: 400px;
     height: fit-content;
     display: block;
     background-color: rgb(255, 255, 255);
@@ -18,14 +18,12 @@
     border-radius:10px ;
     color: rgb(0, 136, 255);
 }
-input{
+.login-input{
+    width: max-content;
     padding: 10px;
     margin: 10px;
-    width: 200px;
 }
-body {
-    
-}
+
 h1{
     background-color: aqua;
     width: fit-content;

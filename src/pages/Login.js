@@ -34,8 +34,8 @@ const Login = () => {
         <div className='login-form'>
              <h2>Đăng Nhập</h2>
             <form onSubmit={handleLogin}>
-                <input type="text" placeholder="Tài khoản" value={username} onChange={(e) => setUsername(e.target.value)} required />
-                <input type="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <input className='login-input' type="text" placeholder="Tài khoản" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                <input className='login-input'  type="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 <button type="submit">Đăng nhập</button>
             </form>
         </div>

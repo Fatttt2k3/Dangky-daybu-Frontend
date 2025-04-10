@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminDuyetDonDayBu from "../components/admin/admin-duyet"
+import MonHocManager from "../components/admin/MonHocManager";
 
 const AdminDashboard = () => {
   const [monhoc, setMonhoc] = useState([]);
@@ -14,6 +15,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="container mt-4">
+    <h1 className="title">Quản lý dạy bù</h1>
       <div className="card shadow-sm">
         <div className="card-header">
           <h4 className="mb-0">Danh sách môn học</h4>
@@ -28,6 +30,7 @@ const AdminDashboard = () => {
           </ul>
         </div>
         <div><AdminDuyetDonDayBu /></div>
+        <div><MonHocManager /></div>
       </div>
     </div>
   );
