@@ -4,6 +4,7 @@ import AdminDuyetDonDayBu from "../components/admin/admin-duyet"
 import MonHocManager from "../components/admin/MonHocManager";
 import LopManager from "../components/admin/LopManager";
 import TietHocManager from "../components/admin/TietHocManager";
+import BuoihocManager from "../components/admin/BuoihocManager";
 const AdminDashboard = () => {
   const [monhoc, setMonhoc] = useState([]);
 
@@ -34,7 +35,7 @@ const AdminDashboard = () => {
         <div><MonHocManager /></div>
         <div><LopManager/> </div>
         <div><TietHocManager/> </div>
-
+        <div><BuoihocManager /> </div>
       </div>
     </div>
   );
