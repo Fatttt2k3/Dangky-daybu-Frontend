@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminDuyetDonDayBu from "../components/admin/admin-duyet"
 import MonHocManager from "../components/admin/MonHocManager";
-
+import LopManager from "../components/admin/LopManager";
 const AdminDashboard = () => {
   const [monhoc, setMonhoc] = useState([]);
 
@@ -31,6 +31,7 @@ const AdminDashboard = () => {
         </div>
         <div><AdminDuyetDonDayBu /></div>
         <div><MonHocManager /></div>
+        <div><LopManager/> </div>
       </div>
     </div>
   );
