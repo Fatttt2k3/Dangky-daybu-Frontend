@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import vi from "date-fns/locale/vi";
 import "../style/Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ThoiKhoaBieuTuan from "../components/chucnangchung/xem-tkb";
 registerLocale("vi", vi);
 
 const DangKyDayBu = () => {
@@ -158,6 +159,7 @@ const DangKyDayBu = () => {
           <button type="submit" className="btn btn-primary px-4">Đăng Ký</button>
         </div>
       </form>
+      <div><ThoiKhoaBieuTuan/></div>
     </div>
   );
 };
