@@ -1,0 +1,78 @@
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f6fa;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* MENU bên trái */
+  .admin-sidebar {
+    width: 220px;
+    background-color: #334af4;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .admin-sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .admin-sidebar button {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+  }
+  
+  .admin-sidebar button:hover {
+    background-color: #636e72;
+  }
+  
+  /* NỘI DUNG bên phải */
+  .admin-content {
+    flex: 1;
+    padding: 30px;
+    background-color: #ffffff;
+    overflow-y: auto;
+  }
+  
+  /* Responsive cho màn nhỏ */
+  @media (max-width: 768px) {
+    .admin-container {
+      flex-direction: column;
+    }
+  
+    .admin-sidebar {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  
+    .admin-sidebar button {
+      width: 48%;
+      margin: 5px 1%;
+    }
+  
+    .admin-content {
+      padding: 15px;
+    }
+  }
+  .admin-title{
+    font-size: large;
+  }
+  p{
+    margin-top: 90%;
+    font-size: 8px;
+  }
+  

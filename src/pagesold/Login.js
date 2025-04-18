@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+    import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {Button  } from "react-bootstrap"
 import "../style/Login.css"
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -37,7 +36,7 @@ const Login = () => {
             <form onSubmit={handleLogin}>
                 <input className='login-input' type="text" placeholder="Tài khoản" value={username} onChange={(e) => setUsername(e.target.value)} required />
                 <input className='login-input'  type="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                <Button type="submit">Đăng nhập</Button>
+                <button type="submit">Đăng nhập</button>
             </form>
         </div>
            

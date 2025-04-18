@@ -4,11 +4,8 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import vi from "date-fns/locale/vi";
 import "../style/Home.css";
-import AdminDanhSachDangKy from "../components/admin/DanhsachDangky";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ThoiKhoaBieuTuan from "../components/chucnangchung/xem-tkb";
-import {jwtDecode} from "jwt-decode"; 
-import Xemlichday from "../components/admin/xemlichday";
+import {jwtDecode} from "jwt-decode"; // 🆕 Thêm dòng này
 
 registerLocale("vi", vi);
 
@@ -189,7 +186,6 @@ const DangKyDayBu = () => {
           <button type="submit" className="btn btn-primary px-4">Đăng Ký</button>
         </div>
       </form>
-      <div><Xemlichday/></div>
     </div>
   );
 };
