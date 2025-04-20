@@ -23,24 +23,32 @@ const Login = () => {
                     navigate('/home');
                 }
             } else {
-                alert('Đăng nhập thất bại!');
+                alert('Đăng nhập thất bại! Vui lòng thử lại.');
             }
         } catch (error) {
-            alert('Lỗi đăng nhập!');
+            alert('Sai thông tin đăng nhập!Vui lòng thử lại.');
         }
     };
 
     return (
+        <div className='login-body'>
         <div className="login-container">
-        <div className='login-form'>
-             <h2>Đăng Nhập</h2>
-            <form onSubmit={handleLogin}>
+        <div >
+            <form onSubmit={handleLogin} >
+            <h2>Đăng Nhập</h2>
                 <input className='login-input' type="text" placeholder="Tài khoản" value={username} onChange={(e) => setUsername(e.target.value)} required />
                 <input className='login-input'  type="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                <Button type="submit">Đăng nhập</Button>
-            </form>
-        </div>
+            <Button  type="submit">Đăng nhập</Button>
            
+       
+            </form>
+             <div style={{display:"flex",justifyContent:"center"}}>
+         <p className='login-sp'>Tư vấn & hỗ trợ: </p>
+            <p className='login-sdt'     >0915393154</p>
+         </div>
+            
+        </div>
+        </div>
         </div>
     );
 };

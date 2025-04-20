@@ -7,10 +7,10 @@
   
   /* MENU bên trái */
   .admin-sidebar {
-    width: 220px;
-    background-color: #334af4;
+    width: 250px;
+    background-color: #db3636;
     color: white;
-    padding: 20px;
+    padding: 0px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   }
   
@@ -26,7 +26,7 @@
     background-color: transparent;
     border: none;
     color: white;
-    padding: 10px 15px;
+    padding: 10px 30px;
     margin-bottom: 10px;
     text-align: left;
     cursor: pointer;
@@ -35,7 +35,7 @@
   }
   
   .admin-sidebar button:hover {
-    background-color: #636e72;
+    background-color: #ff8698;
   }
   
   /* NỘI DUNG bên phải */
@@ -69,10 +69,6 @@
     }
   }
   .admin-title{
-    font-size: large;
+    font-size: 23px;
+    padding: 30px;
   }
-  p{
-    margin-top: 90%;
-    font-size: 8px;
-  }
-  

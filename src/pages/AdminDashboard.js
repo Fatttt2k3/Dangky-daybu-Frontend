@@ -45,7 +45,6 @@ const AdminDashboard = () => {
           localStorage.removeItem("token");
           window.location.href = "/";
         }}>Đăng xuất</button>
-          <p>Bản quyền thuộc về Triệu - Phát - Sáng</p>
 
       </div>
       <div className="admin-content">
