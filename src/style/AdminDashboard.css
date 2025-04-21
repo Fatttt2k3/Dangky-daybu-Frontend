@@ -8,7 +8,7 @@
   /* MENU bên trái */
   .admin-sidebar {
     width: 250px;
-    background-color: #db3636;
+    background-color: #0084ff;
     color: white;
     padding: 0px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
@@ -35,7 +35,7 @@
   }
   
   .admin-sidebar button:hover {
-    background-color: #ff8698;
+    background-color: hwb(236 10% 0%);
   }
   
   /* NỘI DUNG bên phải */
@@ -66,9 +66,13 @@
   
     .admin-content {
       padding: 15px;
+
     }
   }
   .admin-title{
     font-size: 23px;
-    padding: 30px;
+    padding: 15px 15px 15px 0px;
   }
+.footer{
+  margin-top:0px
+}

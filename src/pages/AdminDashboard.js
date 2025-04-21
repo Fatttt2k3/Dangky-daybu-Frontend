@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AdminDuyetDonDayBu from "../components/admin/admin-duyet";
 import MonHocManager from "../components/admin/MonHocManager";
 import LopManager from "../components/admin/LopManager";
@@ -9,10 +9,29 @@ import BomonManager from "../components/admin/BomonManager";
 import ToggleKhoaTrang from "../components/admin/Khoatrang";
 import "../style/AdminDashboard.css"; // <== file CSS riêng
 import DanhSachDangKy from "../components/admin/DanhsachDangky";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from 'react-router-dom';
+
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("duyet");
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    window.location.href = "/";
+  };
 
+  const goToHome = () => {
+    window.location.href = "/home";
+  };
+  const navigate = useNavigate();
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+    if (role !== 'admin') {
+      alert('Bạn không có quyền truy cập trang này!');
+      navigate('/home'); // hoặc "/" tuỳ bạn
+    }
+  }, []);
   const renderComponent = () => {
     switch (activeTab) {
       case "danhsachdangky": return <DanhSachDangKy />;
@@ -28,10 +47,16 @@ const AdminDashboard = () => {
     }
   };
 
-  return (
+  return (<>
+   <div className="header">
+   <strong className="admin-title">AdminDashboard</strong>
+   <div className="header-buttons">
+          <button onClick={goToHome}>Trang chủ  </button>
+          <button onClick={handleLogout}>Đăng xuất</button>
+        </div>
+      </div>
     <div className="admin-container">
       <div className="admin-sidebar">
-        <strong className="admin-title">AdminDashboard</strong>
         <button onClick={() => setActiveTab("danhsachdangky")}>Danh sách đăng ký</button>
         <button onClick={() => setActiveTab("duyet")}>Duyệt đơn</button>
         <button onClick={() => setActiveTab("monhoc")}>Quản lý Môn học</button>
@@ -51,6 +76,11 @@ const AdminDashboard = () => {
         {renderComponent()}
       </div>
     </div>
+    <div className="footer">
+        <p>© 2025 Hệ thống đăng ký dạy bù | Liên hệ: 0915 393 154</p>
+      </div>
+  </>
+    
   );
 };
 
