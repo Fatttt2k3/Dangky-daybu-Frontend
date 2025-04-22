@@ -18,7 +18,7 @@ export default function AdminDuyetDonDayBu() {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // ✅ Lấy đúng mảng từ res.data.data
+      // Lấy đúng mảng từ res.data.data
       setDonList(res.data.data.filter((don) => don.trangthai === "Cho duyet"));
     } catch (err) {
       console.error(err);
