@@ -7,11 +7,11 @@ import BuoihocManager from "../components/admin/BuoihocManager";
 import UserManager from "../components/admin/UserManager";
 import BomonManager from "../components/admin/BomonManager";
 import ToggleKhoaTrang from "../components/admin/Khoatrang";
-import "../style/AdminDashboard.css"; // <== file CSS riêng
+import "../style/AdminDashboard.css"; 
 import DanhSachDangKy from "../components/admin/DanhsachDangky";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from 'react-router-dom';
-
+import AdminDatabaseManager from "../components/admin/dbtool";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("duyet");
@@ -43,6 +43,8 @@ const AdminDashboard = () => {
       case "bomon": return <BomonManager />;
       case "user": return <UserManager />;
       case "khoatrang": return <ToggleKhoaTrang />;
+      case "dbtool": return <AdminDatabaseManager />;
+
      default: return null;
     }
   };
@@ -66,10 +68,7 @@ const AdminDashboard = () => {
         <button onClick={() => setActiveTab("bomon")}>Quản lý Bộ môn</button>
         <button onClick={() => setActiveTab("user")}>Quản lý Giáo viên</button>
         <button onClick={() => setActiveTab("khoatrang")}>Khóa trang</button>
-        <button onClick={() => {
-          localStorage.removeItem("token");
-          window.location.href = "/";
-        }}>Đăng xuất</button>
+        <button onClick={() => setActiveTab("dbtool")}>Database tool</button>
 
       </div>
       <div className="admin-content">
