@@ -11,7 +11,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/auth/login', { username, password });
+            const res = await axios.post('https://dangky-daybu-backend.onrender.com/auth/login', { username, password });
 
             if (res.data.success) {
                 localStorage.setItem('token', res.data.token);

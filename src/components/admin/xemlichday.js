@@ -8,7 +8,7 @@ export default function Xemlichday() {
   const fetchLichDayBu = async () => {
     try {
       const token = localStorage.getItem("token"); // Giả sử token lưu trong localStorage
-      const res = await axios.get("http://localhost:5000/makeup-class/lichdaygiaovien", {
+      const res = await axios.get("https://dangky-daybu-backend.onrender.com/makeup-class/lichdaygiaovien", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

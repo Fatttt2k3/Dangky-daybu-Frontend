@@ -43,7 +43,6 @@ const AdminDashboard = () => {
       case "bomon": return <BomonManager />;
       case "user": return <UserManager />;
       case "khoatrang": return <ToggleKhoaTrang />;
-
      default: return null;
     }
   };
@@ -67,6 +66,10 @@ const AdminDashboard = () => {
         <button onClick={() => setActiveTab("bomon")}>Quản lý Bộ môn</button>
         <button onClick={() => setActiveTab("user")}>Quản lý Giáo viên</button>
         <button onClick={() => setActiveTab("khoatrang")}>Khóa trang</button>
+        <button onClick={() => {
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        }}>Đăng xuất</button>
 
       </div>
       <div className="admin-content">
@@ -82,5 +85,7 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+
 
 

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Button, Spinner, Alert } from "react-bootstrap";
 
-const API = "http://localhost:5000/makeup-class/danhsach-daybu";
-const DUYET_API = "http://localhost:5000/makeup-class/duyet-daybu";
+const API = "https://dangky-daybu-backend.onrender.com/makeup-class/danhsach-daybu";
+const DUYET_API = "https://dangky-daybu-backend.onrender.com/makeup-class/duyet-daybu";
 
 export default function AdminDuyetDonDayBu() {
   const [donList, setDonList] = useState([]);

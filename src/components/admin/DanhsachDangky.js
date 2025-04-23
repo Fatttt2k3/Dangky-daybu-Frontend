@@ -3,8 +3,8 @@ import axios from "axios";
 import { Table, Button, Spinner, Alert, Form } from "react-bootstrap";
 import * as XLSX from "xlsx";
 
-const API = "http://localhost:5000/makeup-class/danhsach-daybu";
-const DELETE_API = "http://localhost:5000/makeup-class/xoa";
+const API = "https://dangky-daybu-backend.onrender.com/makeup-class/danhsach-daybu";
+const DELETE_API = "https://dangky-daybu-backend.onrender.com/makeup-class/xoa";
 
 export default function AdminDanhSachDangKy() {
   const [donList, setDonList] = useState([]);

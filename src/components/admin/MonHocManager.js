@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Button, Form, Alert, Spinner, Modal } from "react-bootstrap";
 
-const API_BASE = "http://localhost:5000/api/system";
+const API_BASE = "https://dangky-daybu-backend.onrender.com/api/system";
 
 export default function MonHocManager() {
   const [monHocList, setMonHocList] = useState([]);

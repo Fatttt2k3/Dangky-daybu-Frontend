@@ -53,10 +53,10 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const [monHocRes, lopRes, tietHocRes, buoiHocRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/system/monhoc"),
-          axios.get("http://localhost:5000/api/system/lop"),
-          axios.get("http://localhost:5000/api/system/tiethoc"),
-          axios.get("http://localhost:5000/api/system/buoihoc")
+          axios.get("https://dangky-daybu-backend.onrender.com/api/system/monhoc"),
+          axios.get("https://dangky-daybu-backend.onrender.com/api/system/lop"),
+          axios.get("https://dangky-daybu-backend.onrender.com/api/system/tiethoc"),
+          axios.get("https://dangky-daybu-backend.onrender.com/api/system/buoihoc")
         ]);
         setMonHocList(monHocRes.data);
         setLopList(lopRes.data);
@@ -92,7 +92,7 @@ const Home = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/makeup-class/dangky-daybu",
+        "https://dangky-daybu-backend.onrender.com/makeup-class/dangky-daybu",
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

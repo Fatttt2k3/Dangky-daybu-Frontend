@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Table, Form, Spinner, Alert, Modal } from "react-bootstrap";
 
-const API_LIST = "http://localhost:5000/auth/danhsach-giaovien";
-const API_CREATE = "http://localhost:5000/auth/tao-taikhoan";
-const API_DELETE = "http://localhost:5000/auth/xoa-taikhoan";
-const API_UPDATE = "http://localhost:5000/auth/sua-taikhoan";
-const API_BOMON = "http://localhost:5000/api/system/bomon";
+const API_LIST = "https://dangky-daybu-backend.onrender.com/auth/danhsach-giaovien";
+const API_CREATE = "https://dangky-daybu-backend.onrender.com/auth/tao-taikhoan";
+const API_DELETE = "https://dangky-daybu-backend.onrender.com/auth/xoa-taikhoan";
+const API_UPDATE = "https://dangky-daybu-backend.onrender.com/auth/sua-taikhoan";
+const API_BOMON = "https://dangky-daybu-backend.onrender.com/api/system/bomon";
 
 export default function UserManager() {
   const [users, setUsers] = useState([]);

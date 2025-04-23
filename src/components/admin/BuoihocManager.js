@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Table, Form, Row, Col, Spinner, Alert } from "react-bootstrap";
 
-const API = "http://localhost:5000/api/system/buoihoc";
-const API_THEM = "http://localhost:5000/api/system/them-buoihoc";
-const API_XOA = "http://localhost:5000/api/system/xoa-buoihoc";
-const API_SUA = "http://localhost:5000/api/system/sua-buoihoc";
+const API = "https://dangky-daybu-backend.onrender.com/api/system/buoihoc";
+const API_THEM = "https://dangky-daybu-backend.onrender.com/api/system/them-buoihoc";
+const API_XOA = "https://dangky-daybu-backend.onrender.com/api/system/xoa-buoihoc";
+const API_SUA = "https://dangky-daybu-backend.onrender.com/api/system/sua-buoihoc";
 
 export default function BuoihocManager() {
   const [list, setList] = useState([]);

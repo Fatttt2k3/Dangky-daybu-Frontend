@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Table, Form, Row, Col, Spinner, Alert } from "react-bootstrap";
 
-const API = "http://localhost:5000/api/system/tiethoc";
-const API_THEM = "http://localhost:5000/api/system/them-tiethoc";
-const API_XOA = "http://localhost:5000/api/system/xoa-tiethoc";
-const API_SUA = "http://localhost:5000/api/system/sua-tiethoc";
+const API = "https://dangky-daybu-backend.onrender.com/api/system/tiethoc";
+const API_THEM = "https://dangky-daybu-backend.onrender.com/api/system/them-tiethoc";
+const API_XOA = "https://dangky-daybu-backend.onrender.com/api/system/xoa-tiethoc";
+const API_SUA = "https://dangky-daybu-backend.onrender.com/api/system/sua-tiethoc";
 
 export default function TietHocManager() {
   const [list, setList] = useState([]);
