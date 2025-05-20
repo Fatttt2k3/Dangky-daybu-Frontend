@@ -7,10 +7,10 @@ import "../style/Home.css";
 import { jwtDecode } from "jwt-decode";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Xemlichday from "../components/admin/xemlichday";
-
+import { Modal, Button } from "react-bootstrap";
 
 registerLocale("vi", vi);
-
+  
 const Home = () => {
   const [formData, setFormData] = useState({
     sotuan: "",
@@ -22,17 +22,20 @@ const Home = () => {
     lido: ""
   });
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("success");
+  const [showAlert, setShowAlert] = useState(false);
+  const [lichKey, setLichKey] = useState(0);
   const [monHocList, setMonHocList] = useState([]);
   const [lopList, setLopList] = useState([]);
   const [tietHocList, setTietHocList] = useState([]);
   const [buoiHocList, setBuoiHocList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [submitAnyway, setSubmitAnyway] = useState(false);
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
-
   useEffect(() => {
-    // Kiểm tra quyền nếu trang bị khoá
     const isLocked = localStorage.getItem("isPageLocked") === "true";
     if (isLocked && token) {
       try {
@@ -49,7 +52,6 @@ const Home = () => {
   }, [token]);
 
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
         const [monHocRes, lopRes, tietHocRes, buoiHocRes] = await Promise.all([
@@ -88,17 +90,54 @@ const Home = () => {
     });
   };
 
+  const checkConflict = async () => {
+    try {
+      const res = await axios.get("https://dangky-daybu-backend.onrender.com/makeup-class/lichdaygiaovien", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const { data } = res.data;
+
+      const formatDate = (date) => new Date(date).toLocaleDateString("en-CA");
+
+      return data.some((entry) => {
+        const sameDay = formatDate(entry.songay) === formatDate(formData.songay);
+        const sameBuoi = entry.buoihoc === formData.buoihoc;
+        const tietTrung = entry.tiethoc.some((t) => formData.tiethoc.includes(String(t)));
+        return sameDay && sameBuoi && tietTrung;
+      });
+    } catch (err) {
+      console.error("Lỗi kiểm tra trùng lịch:", err);
+      return false;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!submitAnyway) {
+      const isConflict = await checkConflict();
+      if (isConflict) {
+        setShowModal(true);
+        return;
+      }
+    }
+
     try {
       const response = await axios.post(
         "https://dangky-daybu-backend.onrender.com/makeup-class/dangky-daybu",
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setMessage(response.data.message);
+      setMessage(response.data.message || "Đăng ký thành công!");
+      setMessageType("success");
+      setShowAlert(true);
+      setSubmitAnyway(false);
+      setLichKey((prev) => prev + 1);
+      setTimeout(() => setShowAlert(false), 3000);
     } catch (error) {
       setMessage(error.response?.data?.message || "Có lỗi xảy ra!");
+      setMessageType("danger");
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
     }
   };
 
@@ -114,7 +153,6 @@ const Home = () => {
 
   return (
     <>
-      {/* Header */}
       <div className="header">
         <h1>Hệ thống Đăng ký Dạy bù</h1>
         <div className="header-buttons">
@@ -123,11 +161,15 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container py-4">
         <h2 className="mb-4 text-center">Đăng Ký Dạy Bù</h2>
-        {message && <div className="alert alert-info">{message}</div>}
 
+        {showAlert && (
+          <div className={`alert alert-${messageType} alert-dismissible fade show`} role="alert">
+            {message}
+            <button type="button" className="btn-close" onClick={() => setShowAlert(false)}></button>
+          </div>
+        )}          
         <form onSubmit={handleSubmit} className="row g-3">
           <div className="col-md-6">
             <label className="form-label">Ngày dạy bù:</label>
@@ -208,17 +250,36 @@ const Home = () => {
             <button type="submit" className="btn btn-primary px-4">Đăng Ký</button>
           </div>
         </form>
-
-        {/* Xem lịch đã đăng ký */}
         <div className="mt-5">
-          <Xemlichday />
+          <Xemlichday key={lichKey} />
         </div>
       </div>
 
-      {/* Footer */}
       <div className="footer">
         <p>© 2025 Hệ thống đăng ký dạy bù | Liên hệ: 0915 393 154</p>
       </div>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Cảnh báo trùng lịch</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Lịch đăng ký trùng với lịch trước đó. Bạn có muốn tiếp tục gửi yêu cầu không?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>Quay lại</Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              setShowModal(false);
+              setSubmitAnyway(true);
+              handleSubmit(new Event("submit"));
+            }}
+          >
+            Vẫn gửi
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
