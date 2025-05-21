@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Button, Form, Row, Col, Alert, Card } from "react-bootstrap";
 import { useEffect } from "react";
 
-const API_BASE = "https://dangky-daybu-backend.onrender.com/db";
+const API_BASE = "http://localhost:5000/db";
 
 export default function BackupImportManager() {
   const [message, setMessage] = useState("");
@@ -48,7 +48,7 @@ export default function BackupImportManager() {
       link.click();
     } catch (err) {
       console.error(err);
-      setError("Lỗi khi tải backup!");
+      setError("Lỗi khi tải file sao lưu!");
     }
   };
 
@@ -119,7 +119,7 @@ export default function BackupImportManager() {
 
       {/* Backup */}
       <Card className="p-3 mb-4">
-        <h5>🔄 Backup dữ liệu</h5>
+        <h5>🔄 Sao lưu dữ liệu</h5>
         <Row className="align-items-end">
           <Col md={4}>
             <Form.Label>Chọn bảng:</Form.Label>
@@ -133,17 +133,17 @@ export default function BackupImportManager() {
             </Form.Select>
           </Col>
           <Col md={4}>
-            <Button onClick={() => handleDownload("one")}>Backup bảng</Button>
+            <Button onClick={() => handleDownload("one")}>Sao lưu bảng dữ liệu</Button>
           </Col>
           <Col md={4}>
-            <Button variant="secondary" onClick={() => handleDownload("all")}>Backup toàn bộ</Button>
+            <Button variant="secondary" onClick={() => handleDownload("all")}>Sao lưu toàn bộ dữ liệu</Button>
           </Col>
         </Row>
       </Card>
 
       {/* Import từng bảng */}
       <Card className="p-3 mb-4">
-        <h5>⬆️ Import dữ liệu cho một bảng</h5>
+        <h5>⬆️ Nhập dữ liệu cho một bảng</h5>
         <Row className="align-items-end">
           <Col md={4}>
             <Form.Label>Chọn bảng:</Form.Label>
@@ -162,7 +162,7 @@ export default function BackupImportManager() {
             <Form.Check
               className="mt-2"
               type="checkbox"
-              label="Xoá dữ liệu cũ trước khi import"
+              label="Xoá dữ liệu cũ trước khi nhập"
               checked={clearBeforeImport}
               onChange={() => setClearBeforeImport(!clearBeforeImport)}
             />
@@ -175,14 +175,14 @@ export default function BackupImportManager() {
             />
           </Col>
           <Col md={4}>
-            <Button variant="success" onClick={handleImport}>Import</Button>
+            <Button variant="success" onClick={handleImport}>Nhập dữ liệu</Button>
           </Col>
         </Row>
       </Card>
 
       {/* Import toàn bộ */}
       <Card className="p-3 mb-4">
-        <h5>📦 Import toàn bộ dữ liệu</h5>
+        <h5>📦 Nhập dữ liệu toàn bộ dữ liệu</h5>
         <Row className="align-items-end">
           <Col md={8}>
             <Form.Control type="file" ref={fileAllInputRef} accept=".json" />
@@ -195,7 +195,7 @@ export default function BackupImportManager() {
             />
           </Col>
           <Col md={4}>
-            <Button variant="warning" onClick={handleImportAll}>Import toàn bộ</Button>
+            <Button variant="warning" onClick={handleImportAll}>Nhập toàn bộ</Button>
           </Col>
         </Row>
       </Card>
