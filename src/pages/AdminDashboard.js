@@ -51,7 +51,7 @@ const AdminDashboard = () => {
 
   return (<>
    <div className="header">
-   <strong className="admin-title">AdminDashboard</strong>
+   <strong className="admin-title">Trang quản trị</strong>
    <div className="header-buttons">
           <button onClick={goToHome}>Trang chủ  </button>
           <button onClick={handleLogout}>Đăng xuất</button>
@@ -59,15 +59,15 @@ const AdminDashboard = () => {
       </div>
     <div className="admin-container">
       <div className="admin-sidebar">
-        <button onClick={() => setActiveTab("danhsachdangky")}>Danh sách đăng ký</button>
-        <button onClick={() => setActiveTab("duyet")}>Duyệt đơn</button>
+        <button onClick={() => setActiveTab("danhsachdangky")}>Xem lịch dạy bù</button>
+        <button onClick={() => setActiveTab("duyet")}>Duyệt lịch dạy bù</button>
         <button onClick={() => setActiveTab("monhoc")}>Quản lý Môn học</button>
         <button onClick={() => setActiveTab("lop")}>Quản lý Lớp</button>
         <button onClick={() => setActiveTab("tiethoc")}>Quản lý Tiết học</button>
         <button onClick={() => setActiveTab("buoihoc")}>Quản lý Buổi học</button>
         <button onClick={() => setActiveTab("bomon")}>Quản lý Bộ môn</button>
-        <button onClick={() => setActiveTab("user")}>Quản lý Giáo viên</button>
-        <button onClick={() => setActiveTab("khoatrang")}>Khóa trang</button>
+        <button onClick={() => setActiveTab("user")}>Quản lý tài khoản giáo viên</button>
+        <button onClick={() => setActiveTab("khoatrang")}>Khóa trang đăng ký</button>
         <button onClick={() => setActiveTab("dbtool")}>Database tool</button>
 
       </div>
